@@ -6,7 +6,7 @@ import axios from 'axios'
 
 import { useRouter } from 'next/router'
 
-export default function SummerFine({ allRetro }) {
+export default function Retro({ allRetro }) {
     const isServerReq = req => !req.url.startsWith('/_next');
     const router = useRouter()
 
@@ -37,11 +37,7 @@ export default function SummerFine({ allRetro }) {
 }
 
 export const getServerSideProps = async () => {
-<<<<<<< HEAD
     let prodRes = await axios.get("http://localhost:3000/api/retro")
-=======
-    let prodRes = await axios.get("/api/retro")
->>>>>>> 0b9e1b3f272f4e8eef97098d0289c5461623d16f
     return {
         props: {
             allRetro: prodRes.data
