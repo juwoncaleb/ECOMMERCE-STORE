@@ -6,7 +6,7 @@ import axios from 'axios'
 
 import { useRouter } from 'next/router'
 
-export default function Office ({ offices }) {
+export default function Office ({ allOffice }) {
     const isServerReq = req => !req.url.startsWith('/_next');
     const router = useRouter()
 
@@ -17,7 +17,7 @@ export default function Office ({ offices }) {
             <p className='itemHeader_Main text-5xl text-left'>OFFICE</p>
             <div className="grid productSection lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 mt-10">
                 {
-                    offices.map((office) => (
+                    allOffice.map((office) => (
                         <Link href={`/office/${office._id}`} passHref key={office._id}>
                             <div className='productGrid ' key={office._id}>
                                 <img className='comImage' src={office.images} />
@@ -37,11 +37,10 @@ export default function Office ({ offices }) {
 }
 
 export const getServerSideProps = async () => {
-    let prodRes = await fetch("https://lacostestores.vercel.app/api/office")
-    let data = await prodRes.json()
+    let officeData = await axios.get("http://lacostestores.vercel.app/api/office")
     return {
         props: {
-            offices: data
+            allOffice: officeData.data
         }
     }
 }
