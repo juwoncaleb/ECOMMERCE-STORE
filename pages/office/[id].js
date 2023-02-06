@@ -107,7 +107,7 @@ export async function getServerSideProps({ params }) {
     console.log(data);
     return {
         props: {
-            officeItem: datahttps://lacostestore.vercel.app
+            officeItem: data
         }
     }
 }
