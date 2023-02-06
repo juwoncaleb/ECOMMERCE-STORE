@@ -2,7 +2,7 @@ import React from 'react'
 import Footer from '../component/Footer'
 import Header from '../component/Header'
 import Link from "next/link"
-import axios from 'axios'
+// import axios from 'axios'
 
 import { useRouter } from 'next/router'
 
@@ -37,7 +37,7 @@ export default function SummerFine({ allProducts }) {
 }
 
 export const getServerSideProps = async () => {
-    let prodRes = await axios.get("https://lacostestores.vercel.app/api/products")
+    let prodRes = await fetch("https://lacostestores.vercel.app//api/products")
     return {
         props: {
             allProducts: prodRes.data
