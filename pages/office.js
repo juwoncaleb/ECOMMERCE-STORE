@@ -3,6 +3,8 @@ import Footer from '../component/Footer'
 import Header from '../component/Header'
 import Link from "next/link"
 import axios from 'axios'
+import { getServerSideProps } from 'next';
+
 
 import { useRouter } from 'next/router'
 
