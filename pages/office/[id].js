@@ -102,7 +102,7 @@ export default function Item({ officeItem }) {
     )
 }
 export async function getServerSideProps({ params }) {
-    const office = await fetch(`https://lacostestore.vercel.app//office/${params.id}`)
+    const office = await fetch(`http://localhost:3000/api/office/${params.id}`)
     const data = await office.json()
     console.log(data);
     return {

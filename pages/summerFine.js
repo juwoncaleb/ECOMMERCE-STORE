@@ -6,7 +6,7 @@ import axios from 'axios'
 
 import { useRouter } from 'next/router'
 
-export default function Retro({ allProd }) {
+export default function SummerFineItem({ allProd }) {
     const isServerReq = req => !req.url.startsWith('/_next');
     const router = useRouter()
 
@@ -37,7 +37,7 @@ export default function Retro({ allProd }) {
 }
 
 export const getServerSideProps = async () => {
-    let prodRes = await fetch('https://lacostestores.vercel.app//api/products')
+    let prodRes = await fetch('http://localhost:3000/api/products')
     return {
         props: {
             allProd: prodRes.data

@@ -37,7 +37,7 @@ export default function Office ({ office }) {
 }
 
 export const getServerSideProps = async () => {
-    let prodRes = await axios.get("https://lacostestore.vercel.app//api/office")
+    let prodRes = await axios.get("http://localhost:3000/api/office")
     return {
         props: {
             office: prodRes.data
