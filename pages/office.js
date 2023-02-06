@@ -37,7 +37,7 @@ export default function Office ({ offices }) {
 }
 
 export const getServerSideProps = async () => {
-    let prodRes = await fetch("https://lacostestores.vercel.app//api/office")
+    let prodRes = await fetch("https://lacostestores.vercel.app/api/office")
     let data = await prodRes.json()
     return {
         props: {
