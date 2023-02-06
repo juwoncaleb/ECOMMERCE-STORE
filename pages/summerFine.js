@@ -6,7 +6,7 @@ import axios from 'axios'
 
 import { useRouter } from 'next/router'
 
-export default function SummerFine({ allProducts }) {
+export default function summerFine({ allProducts }) {
     const isServerReq = req => !req.url.startsWith('/_next');
     const router = useRouter()
 
