@@ -36,7 +36,7 @@ export default function Women({ women }) {
 }
 
 export const getServerSideProps = async () => {
-    let prodRes = await axios.get("https://lacostestore.vercel.app/api/women")
+    let prodRes = await axios.get("https://lacostestore.vercel.app//api/women")
     return {
         props: {
             women: prodRes.data

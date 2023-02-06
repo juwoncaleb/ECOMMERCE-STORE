@@ -102,7 +102,7 @@ export default function Item({ productItem }) {
     )
 }
 export async function getServerSideProps({ params }) {
-    const product = await fetch(`https://lacostestore.vercel.app/api/shoe/${params.id}`)
+    const product = await fetch(`https://lacostestore.vercel.app//api/shoe/${params.id}`)
     const data = await product.json()
     console.log(data);
     return {

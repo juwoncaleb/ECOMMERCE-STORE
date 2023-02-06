@@ -37,7 +37,7 @@ export default function Comfort ({ comfort }) {
 }
 
 export const getServerSideProps = async () => {
-    let prodRes = await axios.get("https://lacostestore.vercel.app/api/comfort")
+    let prodRes = await axios.get("https://lacostestore.vercel.app//api/comfort")
     return {
         props: {
             comfort: prodRes.data

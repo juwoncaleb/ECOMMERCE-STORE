@@ -36,7 +36,7 @@ export default function SummerFine({ shoeprod }) {
 }
 
 export const getServerSideProps = async () => {
-    let shoegame = await axios.get("https://lacostestore.vercel.app/api/shoe")
+    let shoegame = await axios.get("https://lacostestore.vercel.app//api/shoe")
     return {
         props: {
           shoeprod: shoegame.data
