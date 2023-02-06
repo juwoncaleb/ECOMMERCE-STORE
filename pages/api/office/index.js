@@ -2,7 +2,7 @@ import dbConnect from "../../../utils/Mongo";
 import Office from "../../../model/Office";
 
 export default async function Handler (req, res) {
-    const {method} = req
+    const { method } = req
     // Connect to Database
     console.log("Connecting to the database...");
      await dbConnect()
