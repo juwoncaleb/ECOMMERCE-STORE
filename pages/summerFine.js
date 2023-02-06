@@ -15,7 +15,7 @@ export default function SummerFine({ allProducts }) {
             <Header />
             <p className=" itemHeader ml-auto text-left">  <span className='cursor-pointer' onClick={() => router.push('/men')}>Men</span>  </p>
             <p className='itemHeader_Main text-5xl text-left'>SUMMER FINE SELECTON</p>
-            {/* <div className="grid productSection lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 mt-10">
+            <div className="grid productSection lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 mt-10">
                 {
                     allProducts.map((summerFineItem) => (
                         <Link href={`/summerFineItem/${summerFineItem._id}`} passHref key={summerFineItem._id}>
@@ -30,17 +30,17 @@ export default function SummerFine({ allProducts }) {
                         </Link>
                     ))
                 }
-            </div> */}
+            </div>
             <Footer />
         </div>
     )
 }
 
-// export const getServerSideProps = async () => {
-//     let prodRes = await axios.get("https://lacostestore.vercel.app/api/products")
-//     return {
-//         props: {
-//             allProducts: prodRes.data
-//         }
-//     }
-// }
+export const getServerSideProps = async () => {
+    let prodRes = await axios.get("https://lacostestores.vercel.app//api/products")
+    return {
+        props: {
+            allProducts: prodRes.data
+        }
+    }
+}
