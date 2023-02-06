@@ -102,7 +102,7 @@ export default function Item({ kid }) {
     )
 }
 export async function getServerSideProps({ params }) {
-    const kid = await fetch(`http://localhost:3000/api/kid/${params.id}`)
+    const kid = await fetch(`https://lacostestore.vercel.app/kid/${params.id}`)
     const data = await kid.json()
     console.log(data);
     return {

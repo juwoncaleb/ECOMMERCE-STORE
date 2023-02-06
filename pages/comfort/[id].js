@@ -102,7 +102,7 @@ export default function Item({ comfortItem }) {
     )
 }
 export async function getServerSideProps({ params }) {
-    const comfort = await fetch(`http://localhost:3000/api/comfort/${params.id}`)
+    const comfort = await fetch(`https://lacostestore.vercel.app/api/comfort/${params.id}`)
     const data = await comfort.json()
     console.log(data);
     return {

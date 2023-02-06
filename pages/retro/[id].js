@@ -102,7 +102,7 @@ export default function Item({ retro }) {
     )
 }
 export async function getServerSideProps({ params }) {
-    const retro = await fetch(`http://localhost:3000/api/retro/${params.id}`)
+    const retro = await fetch(`https://lacostestore.vercel.app/retro/${params.id}`)
     const data = await retro.json()
     console.log(data);
     return {

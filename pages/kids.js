@@ -36,7 +36,7 @@ export default function SummerFine({ kidProduction }) {
 }
 
 export const getServerSideProps = async () => {
-    let kidProd = await axios.get("http://localhost:3000/api/kid")
+    let kidProd = await axios.get("https://lacostestore.vercel.app/api/kid")
     return {
         props: {
           kidProduction: kidProd.data

@@ -122,7 +122,7 @@ function Order({ allOrder }) {
 export default Order
 
 export async function getServerSideProps() {
-    const prodRes = await fetch("http://localhost:3000/api/products")
+    const prodRes = await fetch("https://lacostestore.vercel.app/products")
     const data = await prodRes.json()
     console.log(data);
     return {
