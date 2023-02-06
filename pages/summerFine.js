@@ -2,11 +2,11 @@ import React from 'react'
 import Footer from '../component/Footer'
 import Header from '../component/Header'
 import Link from "next/link"
-// import axios from 'axios'
+import axios from 'axios'
 
 import { useRouter } from 'next/router'
 
-export default function SummerFine({ allProducts }) {
+export default function Retro({ allProd }) {
     const isServerReq = req => !req.url.startsWith('/_next');
     const router = useRouter()
 
@@ -17,14 +17,14 @@ export default function SummerFine({ allProducts }) {
             <p className='itemHeader_Main text-5xl text-left'>SUMMER FINE SELECTON</p>
             <div className="grid productSection lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 mt-10">
                 {
-                    allProducts.map((summerFineItem) => (
-                        <Link href={`/summerFineItem/${summerFineItem._id}`} passHref key={summerFineItem._id}>
-                            <div className='productGrid ' key={summerFineItem._id}>
-                                <img className='productImages' src={summerFineItem.images} />
+                    allProd.map((product) => (
+                        <Link href={`/summerFineItem/${product._id}`} passHref key={product._id}>
+                            <div className='productGrid ' key={product._id}>
+                                <img className='productImages' src={product.images} />
                                 <br />
-                                <p className='itemName'>{summerFineItem.name}</p>
+                                <p className='itemName'>{product.name}</p>
                                 <br />
-                                <p className='itemPrice'>    $ {summerFineItem.price}
+                                <p className='itemPrice'>    $ {product.price}
                                 </p>
                             </div>
                         </Link>
@@ -37,10 +37,10 @@ export default function SummerFine({ allProducts }) {
 }
 
 export const getServerSideProps = async () => {
-    let prodRes = await fetch("https://lacostestores.vercel.app/api/products")
+    let prodRes = await axios.get("https://lacostestores.vercel.app/api/products")
     return {
         props: {
-            allProducts: prodRes.data
+            allProd: prodRes.data
         }
     }
 }

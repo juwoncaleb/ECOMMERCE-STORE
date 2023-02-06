@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addProduct } from '../../redux/cartSlice'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import axios from 'axios'
 
 
 export default function Item({ productItem }) {
@@ -78,7 +79,7 @@ export default function Item({ productItem }) {
                 </div>
 
 
-                
+
 
 
                 <div onClick={addToCart} className='bg-black bag mt-2 cursor-pointer'>
@@ -87,7 +88,7 @@ export default function Item({ productItem }) {
                 <hr className='description_line' />
                 <p className='text-left mt-6'>Description</p>
                 <p className='desc mt-6'>
-                    
+
                     - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adip
                 </p>
                 <div className='flex mt-4'>
@@ -102,7 +103,7 @@ export default function Item({ productItem }) {
     )
 }
 export async function getServerSideProps({ params }) {
-    const product = await fetch(`https://lacostestore.vercel.app//api/products/${params.id}`)
+    const product = await fetch(`http://localhost:3000/api/products/${params.id}`)
     const data = await product.json()
     console.log(data);
     return {
