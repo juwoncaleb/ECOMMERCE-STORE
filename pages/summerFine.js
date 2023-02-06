@@ -37,7 +37,7 @@ export default function Retro({ allProd }) {
 }
 
 export const getServerSideProps = async () => {
-    let prodRes = await axios.get("https://lacostestores.vercel.app/api/products")
+    let prodRes = await fetch('https://lacostestores.vercel.app//api/products')
     return {
         props: {
             allProd: prodRes.data
