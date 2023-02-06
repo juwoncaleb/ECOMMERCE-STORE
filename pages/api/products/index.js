@@ -10,8 +10,12 @@ export default async function Handler (req, res) {
     
     if (method === "GET") {
         
+       try {
         const allProducts = await Product.find()
         res.status(200).json(allProducts)
+       } catch (error) {
+        console.log(error ,"fetchin erroe");
+       }
     }
     if (method === "POST") {
         try {
