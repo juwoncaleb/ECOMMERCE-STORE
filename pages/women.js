@@ -7,7 +7,7 @@ import Women from "../model/Women";
 
 import { useRouter } from 'next/router'
 
-export default function WomenStuff({ women }) {
+export default function Woomen({ woomen }) {
     // const isServerReq = req => !req.url.startsWith('/_next');
     const router = useRouter()
 
@@ -17,7 +17,7 @@ export default function WomenStuff({ women }) {
             <p className=" itemHeader ml-auto text-left">  <span className='cursor-pointer' onClick={() => router.push('/women')}>Women</span>  </p>
             <div className="grid productSection lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 mt-10">
                 {
-                    women.map((woman) => (
+                    woomen.map((woman) => (
                         <Link href={`/women/${woman._id}`} passHref key={woman._id}>
                             <div className='productGrid ' key={woman._id}>
                                 <img className='productImages' src={woman.images} />
@@ -43,7 +43,7 @@ export const getServerSideProps = async () => {
 
         return {
             props: {
-                women: allWomen,
+                woomen: allWomen,
             },
         };
     } catch (error) {
