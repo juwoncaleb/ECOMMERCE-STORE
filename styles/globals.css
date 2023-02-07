@@ -37,9 +37,10 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .prodImg{
+  .prodImg {
     width: 500px;
   }
+
   .lefticon {
     margin-left: 50px;
   }
@@ -118,19 +119,22 @@
 }
 
 
-.itemName{
+.itemName {
   font-family: Archivo;
   font-weight: bold;
 
 }
+
 .headerText {
   font-family: Archivo;
   font-weight: 700;
 }
-.itname{
+
+.itname {
   font-family: Archivo;
   font-size: 17px;
 }
+
 .smallerText {
   font-family: Archivo;
   font-size: 20px;
@@ -1213,19 +1217,42 @@ tr:nth-child(even) {
 }
 
 
-.prodImg{
+.prodImg {
   width: 500px;
 }
+
+@media screen and (max-width:414px) {
+  .headerText {
+    position: relative;
+    right: 20px;
+  }
+
+}
+
+@media screen and (max-width:375px) {
+  .headerText {
+    position: relative;
+    right: 30px;
+  }
+}
+
 @media screen and (max-width: 425px) {
-  .comImage{
+  .cartCount {
+    margin-top: 5px;
+    font-size: 13px;
+  }
+
+  .comImage {
     height: 250px;
     margin-left: auto;
     margin-right: 100px;
   }
-  .prodImg{
+
+  .prodImg {
     width: 300px;
   }
-  .itemPrice{
+
+  .itemPrice {
     font-family: Archivo;
     font-weight: bold;
     margin-right: 80px;
@@ -1233,76 +1260,97 @@ tr:nth-child(even) {
     bottom: 20px;
 
   }
-  .itemName{
+
+  .itemName {
     margin-right: 80px;
   }
-  .urbanline{
+
+  .urbanline {
     margin-top: 20px;
-    
+
   }
-  .textline_6{
+
+  .textline_6 {
     margin-left: 50px;
   }
-  .officeMob{
+
+  .officeMob {
     margin-top: 10px;
-    
+
   }
-  .textline_5{
+
+  .textline_5 {
     margin-left: 50px;
   }
-  .reetro{
+
+  .reetro {
     margin-top: 20px;
   }
-  .headerTe{
+
+  .headerTe {
     font-family: Archivo;
     font-weight: bold;
     margin-left: 50px;
 
   }
-  .itemHeader_Main{
+
+  .itemHeader_Main {
     margin-left: 60px;
     font-size: 20px;
   }
-  .itemHeader{
+
+  .itemHeader {
     margin-left: 60px;
   }
-  .com{
+
+  .com {
     margin-top: 20px;
   }
-  .textline_3{
+
+  .textline_3 {
     margin-left: 50px;
   }
-  .mobpad{
+
+  .mobpad {
     margin-top: 20px;
   }
-  .menfashion{
+
+  .menfashion {
     width: 300px;
   }
-  .headerTex{
+
+  .headerTex {
     margin-left: 10px;
   }
-  .menChoice{
+
+  .menChoice {
     margin-left: 170px;
 
   }
-  .border1{
+
+  .border1 {
     position: relative;
     bottom: 10px;
+    margin-left: 50px;
   }
-  .headerText{
+
+  .headerText {
     position: relative;
     bottom: 10px;
     display: flex;
     justify-content: space-between;
   }
-.navIcon{
-  height: 20px;
 
-}
-.moon{
-  height: 20px !important;
+  .navIcon {
+    height: 20px;
 
-}
+  }
+
+  .moon {
+    height: 20px !important;
+
+  }
+
   .checkoutt {
     margin-left: 100px;
   }
@@ -1622,8 +1670,9 @@ input[type="checkbox"] {
   color: red;
   font-size: 20px;
 }
-.sizePrice{
+
+.sizePrice {
   margin-left: auto;
   margin-right: auto;
- 
+
 }

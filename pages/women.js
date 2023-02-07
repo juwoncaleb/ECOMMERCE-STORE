@@ -2,14 +2,13 @@ import React from 'react'
 import Footer from '../component/Footer'
 import Header from '../component/Header'
 import Link from "next/link"
-import axios from 'axios'
 import dbConnect from "../utils/Mongo";
-import Women from "../model/Office";
+import Women from "../model/Women";
 
 import { useRouter } from 'next/router'
 
 export default function WomenStuff({ women }) {
-    const isServerReq = req => !req.url.startsWith('/_next');
+    // const isServerReq = req => !req.url.startsWith('/_next');
     const router = useRouter()
 
     return (
