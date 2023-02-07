@@ -36,10 +36,21 @@ export default function Shoe({ shoeprod }) {
 }
 
 export const getServerSideProps = async () => {
-    let shoegame = await axios.get("https://lacostestore.vercel.app//api/shoe")
-    return {
-        props: {
-          shoeprod: shoegame.data
-        }
+    try {
+        await dbConnect();
+        const allShoes = await Shoe.find();
+
+        return {
+            props: {
+                shoeprod: allShoes,
+            },
+        };
+    } catch (error) {
+        console.log("cant fetch");
+        return {
+            props: {
+                comfort: [],
+            },
+        };
     }
-}
+};

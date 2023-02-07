@@ -37,10 +37,22 @@ export default function SummerFineItem({ allProd }) {
 }
 
 export const getServerSideProps = async () => {
-    let prodRes = await fetch('http://localhost:3000/api/products')
-    return {
-        props: {
-            allProd: prodRes.data
-        }
+    try {
+        await dbConnect();
+        const allSum = await Shoe.find();
+
+        return {
+            props: {
+                allProd: allSum,
+            },
+        };
+    } catch (error) {
+        console.log("cant fetch");
+        return {
+            props: {
+                comfort: [],
+            },
+        };
     }
-}
+};
+

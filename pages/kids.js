@@ -36,10 +36,21 @@ export default function Kid({ kidProduction }) {
 }
 
 export const getServerSideProps = async () => {
-    let kidProd = await axios.get("https://lacostestore.vercel.app//api/kid")
-    return {
-        props: {
-          kidProduction: kidProd.data
-        }
+    try {
+        await dbConnect();
+        const allKids = await Kid.find();
+
+        return {
+            props: {
+                kidProduction: allKids,
+            },
+        };
+    } catch (error) {
+        console.log("cant fetch");
+        return {
+            props: {
+                comfort: [],
+            },
+        };
     }
-}
+};

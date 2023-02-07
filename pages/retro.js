@@ -37,10 +37,21 @@ export default function Retro({ allRetro }) {
 }
 
 export const getServerSideProps = async () => {
-    let prodRes = await axios.get("http://localhost:3000/api/retro")
-    return {
-        props: {
-            allRetro: prodRes.data
-        }
+    try {
+        await dbConnect();
+        const allRetro = await Retro.find();
+
+        return {
+            props: {
+                allRetro: allRetro,
+            },
+        };
+    } catch (error) {
+        console.log("cant fetch");
+        return {
+            props: {
+                comfort: [],
+            },
+        };
     }
-}
+};
