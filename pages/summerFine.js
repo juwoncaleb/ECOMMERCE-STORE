@@ -3,7 +3,8 @@ import Footer from '../component/Footer'
 import Header from '../component/Header'
 import Link from "next/link"
 import axios from 'axios'
-
+import dbConnect from "../utils/Mongo";
+import Product from "../model/Product";
 import { useRouter } from 'next/router'
 
 export default function SummerFineItem({ allProd }) {
@@ -39,7 +40,7 @@ export default function SummerFineItem({ allProd }) {
 export const getServerSideProps = async () => {
     try {
         await dbConnect();
-        const allSum = await Shoe.find();
+        const allSum = await Product.find();
 
         return {
             props: {

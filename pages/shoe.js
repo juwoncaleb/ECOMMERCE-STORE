@@ -3,10 +3,11 @@ import Footer from '../component/Footer'
 import Header from '../component/Header'
 import Link from "next/link"
 import axios from 'axios'
-
+import dbConnect from "../utils/Mongo";
+import Shoe from "../model/Shoe";
 import { useRouter } from 'next/router'
 
-export default function Shoe({ shoeprod }) {
+export default function ShoePage({ shoeprod }) {
     const isServerReq = req => !req.url.startsWith('/_next');
     const router = useRouter()
 

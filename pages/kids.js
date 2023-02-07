@@ -3,7 +3,8 @@ import Footer from '../component/Footer'
 import Header from '../component/Header'
 import Link from "next/link"
 import axios from 'axios'
-
+import dbConnect from "../utils/Mongo";
+import Kid from "../model/Kid";
 import { useRouter } from 'next/router'
 
 export default function Kid({ kidProduction }) {

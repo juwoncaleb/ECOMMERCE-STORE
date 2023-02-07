@@ -8,7 +8,7 @@ import Women from "../model/Office";
 
 import { useRouter } from 'next/router'
 
-export default function Women({ women }) {
+export default function WomenStuff({ women }) {
     const isServerReq = req => !req.url.startsWith('/_next');
     const router = useRouter()
 

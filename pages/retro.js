@@ -3,10 +3,11 @@ import Footer from '../component/Footer'
 import Header from '../component/Header'
 import Link from "next/link"
 import axios from 'axios'
-
+import dbConnect from "../utils/Mongo";
+import Retro from "../model/Retro";
 import { useRouter } from 'next/router'
 
-export default function Retro({ allRetro }) {
+export default function RetroPage({ allRetro }) {
     const isServerReq = req => !req.url.startsWith('/_next');
     const router = useRouter()
 

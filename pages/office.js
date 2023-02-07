@@ -2,12 +2,8 @@ import React from 'react'
 import Footer from '../component/Footer'
 import Header from '../component/Header'
 import Link from "next/link"
-
 import dbConnect from "../utils/Mongo";
 import Office from "../model/Office";
-
-
-
 import { useRouter } from 'next/router'
 
 export default function Offic({ offices }) {

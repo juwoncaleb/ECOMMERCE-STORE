@@ -3,10 +3,12 @@ import Footer from '../component/Footer'
 import Header from '../component/Header'
 import Link from "next/link"
 import axios from 'axios'
-
+import dbConnect from "../utils/Mongo";
+import Causal from "../model/Casual";
 import { useRouter } from 'next/router'
+import Casual from '../model/Casual'
 
-export default function Causal({ office }) {
+export default function Causal({ casualItems }) {
     const isServerReq = req => !req.url.startsWith('/_next');
     const router = useRouter()
 
@@ -17,14 +19,14 @@ export default function Causal({ office }) {
             <p className='itemHeader_Main text-5xl text-left'>OFFICE</p>
             <div className="grid productSection lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 mt-10">
                 {
-                    office.map((office) => (
-                        <Link href={`/office/${office._id}`} passHref key={office._id}>
-                            <div className='productGrid ' key={office._id}>
-                                <img className='comImage' src={office.images} />
+                    casualItems.map((cas) => (
+                        <Link href={`/office/${cas._id}`} passHref key={cas._id}>
+                            <div className='productGrid ' key={cas._id}>
+                                <img className='comImage' src={cas.images} />
                                 <br />
-                                <p className='itemName'>{office.name}</p>
+                                <p className='itemName'>{cas.name}</p>
                                 <br />
-                                <p className='itemPrice'>    $ {office.price}
+                                <p className='itemPrice'>    $ {cas.price}
                                 </p>
                             </div>
                         </Link>
@@ -37,10 +39,21 @@ export default function Causal({ office }) {
 }
 
 export const getServerSideProps = async () => {
-    let prodRes = await axios.get("https://lacostestore.vercel.app//api/office")
-    return {
-        props: {
-            office: prodRes.data
-        }
+    try {
+        await dbConnect();
+        const allCasual = await Casual.find();
+
+        return {
+            props: {
+                casualItems: allCasual,
+            },
+        };
+    } catch (error) {
+        console.log("cant fetch");
+        return {
+            props: {
+                offices: [],
+            },
+        };
     }
-}
+};
