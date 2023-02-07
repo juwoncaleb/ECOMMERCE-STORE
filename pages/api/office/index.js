@@ -9,8 +9,8 @@ export default async function Handler(req, res) {
     console.log("Database Connected");
 
     if (method === "GET") {
-
-        console.log("fvd c")
+        res.status(200).json({ message: 'Hello from Next.js!' })
+       
     }
     if (method === "POST") {
         try {
