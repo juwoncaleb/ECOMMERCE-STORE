@@ -78,7 +78,7 @@ export default function Item({ comfortItem }) {
                 </div>
 
 
-                
+
 
 
                 <div onClick={addToCart} className='bg-black bag mt-2 cursor-pointer'>
@@ -87,7 +87,7 @@ export default function Item({ comfortItem }) {
                 <hr className='description_line' />
                 <p className='text-left mt-6'>Description</p>
                 <p className='desc mt-6'>
-                    
+
                     - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adip
                 </p>
                 <div className='flex mt-4'>
@@ -101,13 +101,27 @@ export default function Item({ comfortItem }) {
         </div>
     )
 }
-export async function getServerSideProps({ params }) {
-    const comfort = await fetch(`https://lacostestore.vercel.app//api/comfort/${params.id}`)
-    const data = await comfort.json()
-    console.log(data);
-    return {
-        props: {
-            comfortItem: data
-        }
+
+
+export const getServerSideProps = async () => {
+
+    try {
+        await dbConnect();
+        const comfy = await Comfort.findById(id)
+
+        return {
+            props: {
+                comfortItem: comfy,
+            },
+        };
+    } catch (error) {
+        console.log("cant fetch");
+        return {
+            props: {
+                comfort: [],
+            },
+        };
     }
-}
+};
+
+
