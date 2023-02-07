@@ -50,8 +50,8 @@ export const getServerSideProps = async () => {
                 offices: allOffice,
             },
         };
-    } catch (reason) {
-        reportErrorSomewhere(reason);
+    } catch (error) {
+        console.log("cant fetch");
         return {
             props: {
                 offices: [],
