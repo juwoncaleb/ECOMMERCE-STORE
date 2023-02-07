@@ -6,7 +6,8 @@ import { addProduct } from '../../redux/cartSlice'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
-
+import dbConnect from "../utils/Mongo";
+import Comfort from "../model/Comfort";
 export default function Item({ comfortItem }) {
     const dispatch = useDispatch()
     const router = useRouter()
