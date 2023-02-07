@@ -4,11 +4,10 @@ import Header from '../component/Header'
 import Link from "next/link"
 import axios from 'axios'
 import dbConnect from "../utils/Mongo";
-import Causal from "../model/Casual";
 import { useRouter } from 'next/router'
 import Casual from '../model/Casual'
 
-export default function Causal({ casualItems }) {
+export default function CausalProd ({ casualItems }) {
     const isServerReq = req => !req.url.startsWith('/_next');
     const router = useRouter()
 
