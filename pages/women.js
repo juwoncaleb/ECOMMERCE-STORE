@@ -3,6 +3,8 @@ import Footer from '../component/Footer'
 import Header from '../component/Header'
 import Link from "next/link"
 import axios from 'axios'
+import dbConnect from "../utils/Mongo";
+import Women from "../model/Office";
 
 import { useRouter } from 'next/router'
 
@@ -36,10 +38,21 @@ export default function Women({ women }) {
 }
 
 export const getServerSideProps = async () => {
-    let prodRes = await axios.get("https://lacostestore.vercel.app//api/women")
-    return {
-        props: {
-            women: prodRes.data
-        }
+    try {
+        await dbConnect();
+        const allWomen = await Women.find();
+
+        return {
+            props: {
+                =: allWomen,
+            },
+        };
+    } catch (error) {
+        console.log("cant fetch");
+        return {
+            props: {
+                offices: [],
+            },
+        };
     }
-}
+};

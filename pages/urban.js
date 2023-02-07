@@ -3,10 +3,11 @@ import Footer from '../component/Footer'
 import Header from '../component/Header'
 import Link from "next/link"
 import axios from 'axios'
-
+import dbConnect from "../utils/Mongo";
+import Urban from "../model/Office";
 import { useRouter } from 'next/router'
 
-export default function Urban({ office }) {
+export default function Urban({ urban }) {
     const isServerReq = req => !req.url.startsWith('/_next');
     const router = useRouter()
 
@@ -14,17 +15,17 @@ export default function Urban({ office }) {
         <div>
             <Header />
             <p className=" itemHeader ml-auto text-left">  <span className='cursor-pointer' onClick={() => router.push('/men')}>Men</span>  </p>
-            <p className='itemHeader_Main text-5xl text-left'>OFFICE</p>
+            <p className='itemHeader_Main text-5xl text-left'>URBAN</p>
             <div className="grid productSection lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 mt-10">
                 {
-                    office.map((office) => (
-                        <Link href={`/office/${office._id}`} passHref key={office._id}>
-                            <div className='productGrid ' key={office._id}>
-                                <img className='comImage' src={office.images} />
+                    urban.map((urbanItem) => (
+                        <Link href={`/retro/${urbanItem._id}`} passHref key={urbanItem._id}>
+                            <div className='productGrid ' key={urbanItem._id}>
+                                <img className='comImage' src={urbanItem.images} />
                                 <br />
-                                <p className='itemName'>{office.name}</p>
+                                <p className='itemName'>{urbanItem.name}</p>
                                 <br />
-                                <p className='itemPrice'>    $ {office.price}
+                                <p className='itemPrice'>    $ {urbanItem.price}
                                 </p>
                             </div>
                         </Link>
@@ -37,10 +38,21 @@ export default function Urban({ office }) {
 }
 
 export const getServerSideProps = async () => {
-    let prodRes = await axios.get("http://localhost:3000//api/office")
-    return {
-        props: {
-            office: prodRes.data
-        }
+    try {
+        await dbConnect();
+        const allOffice = await Office.find();
+
+        return {
+            props: {
+                offices: allOffice,
+            },
+        };
+    } catch (error) {
+        console.log("cant fetch");
+        return {
+            props: {
+                offices: [],
+            },
+        };
     }
-}
+};
