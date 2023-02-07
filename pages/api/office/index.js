@@ -1,16 +1,17 @@
 import dbConnect from "../../../utils/Mongo";
 import Office from "../../../model/Office";
 
-export default async function Handler(req, res) {
+export default async function Handler (req, res) {
     const { method } = req
     // Connect to Database
     console.log("Connecting to the database...");
-    await dbConnect()
-    console.log("Database Connected");
-
+     await dbConnect()
+    console.log("Database Connected");    
+    
     if (method === "GET") {
-        res.status(200).json({ message: 'Hello from Next.js!' })
-       
+        
+        const allOffice = await Office.find()
+        res.status(200).json(allOffice)
     }
     if (method === "POST") {
         try {
