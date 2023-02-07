@@ -18,14 +18,14 @@ export default function Women({ women }) {
             <p className=" itemHeader ml-auto text-left">  <span className='cursor-pointer' onClick={() => router.push('/women')}>Women</span>  </p>
             <div className="grid productSection lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 mt-10">
                 {
-                    women.map((women) => (
-                        <Link href={`/women/${women._id}`} passHref key={women._id}>
-                            <div className='productGrid ' key={women._id}>
-                                <img className='productImages' src={women.images} />
+                    women.map((woman) => (
+                        <Link href={`/women/${woman._id}`} passHref key={woman._id}>
+                            <div className='productGrid ' key={woman._id}>
+                                <img className='productImages' src={woman.images} />
                                 <br />
-                                <p className='itemName'>{women.name}</p>
+                                <p className='itemName'>{woman.name}</p>
                                 <br />
-                                <p className='itemPrice'>    $ {women.price}
+                                <p className='itemPrice'>    $ {woman.price}
                                 </p>
                             </div>
                         </Link>
@@ -44,7 +44,7 @@ export const getServerSideProps = async () => {
 
         return {
             props: {
-                =: allWomen,
+                women: allWomen,
             },
         };
     } catch (error) {
