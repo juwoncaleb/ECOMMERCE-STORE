@@ -16,7 +16,7 @@ export default function Office ({ offices }) {
             <Header />
             <p className=" itemHeader ml-auto text-left">  <span className='cursor-pointer' onClick={() => router.push('/men')}>Men</span>  </p>
             <p className='itemHeader_Main text-5xl text-left'>OFFICE</p>
-            <div className="grid productSection lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 mt-10">
+            {/* <div className="grid productSection lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 mt-10">
                 {
                     offices.map((office) => (
                         <Link href={`/office/${office._id}`} passHref key={office._id}>
@@ -31,7 +31,7 @@ export default function Office ({ offices }) {
                         </Link>
                     ))
                 }
-            </div>
+            </div> */}
             <Footer />
         </div>
     )
