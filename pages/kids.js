@@ -7,7 +7,7 @@ import dbConnect from "../utils/Mongo";
 import Kid from "../model/Kid";
 import { useRouter } from 'next/router'
 
-export default function Kid({ kidProduction }) {
+export default function Kiddies ({ kidProduction }) {
     const isServerReq = req => !req.url.startsWith('/_next');
     const router = useRouter()
 
