@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import Footer from "../component/Footer";
 import Header from "../component/Header";
+import { useRouter } from 'next/router'
+
 export default function LandingPage() {
+  const router = useRouter()
 
   return (
     <div className="App">
@@ -24,19 +27,19 @@ export default function LandingPage() {
 
       <div className="flex justify-center">
         <div className="grid gap-4 grid-cols-2 xl:grid-cols-2 landingPage_secondPage  ">
-          <div>
+          <div onClick={() => router.push('/summerFine')}>
             <img className="image1  " src="https://res.cloudinary.com/ddjlsw268/image/upload/v1667664148/uploads/vn5axwgbjc7ylerthhyz.png" />
             <p className="catergory_subs">TrackSuit</p>
           </div>
-          <div>
+          <div onClick={() => router.push('/retro')}>
             <img className="image1  " src="https://res.cloudinary.com/ddjlsw268/image/upload/v1667664234/uploads/eiuvlwkdeqczoihrv08p.png" />
             <p className="catergory_subs">Blazer</p>
           </div>
-          <div>
+          <div onClick={() => router.push('/casual')}>
             <img className="image1  " src="https://res.cloudinary.com/ddjlsw268/image/upload/v1667664303/uploads/dfgwpzxfq463lpaebfv3.png" />
             <p className="catergory_subs">Specials</p>
           </div>
-          <div>
+          <div onClick={() => router.push('/comfort')}>
             <img className="image1  " src="https://res.cloudinary.com/ddjlsw268/image/upload/v1667664328/uploads/q2dvauryarcjvte6h6lx.png" />
             <p className="catergory_subs">Sweater</p>
           </div>

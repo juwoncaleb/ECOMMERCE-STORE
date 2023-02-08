@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 
 .signn {
   color: red;
@@ -37,6 +35,9 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .backgroundImage{
+    height: 600px !important;
+  }
   .prodImg {
     width: 500px;
   }
@@ -1237,6 +1238,11 @@ tr:nth-child(even) {
 }
 
 @media screen and (max-width: 425px) {
+  .productImages{
+    margin-right: 100px !important;  }
+  .landingPage_secondPage{
+    margin-right: 30px;
+  }
   .cartCount {
     margin-top: 5px;
     font-size: 13px;
@@ -1250,6 +1256,7 @@ tr:nth-child(even) {
 
   .prodImg {
     width: 300px;
+    
   }
 
   .itemPrice {

@@ -31,7 +31,7 @@ export default function Item({ officeItem }) {
     return (
         <div>
             <Header />
-            <p className=" itemHeader ml-auto text-left">  <span className='cursor-pointer' onClick={() => router.push('/men')}>Men</span>   <span className='GreyText ml-2 cursor-pointer' onClick={() => router.push('/office')}>   / Office</span></p>
+            <p className=" itemHeader ml-auto text-left">  <span className='cursor-pointer' onClick={() => router.push('/kids')}>Kids</span> </p>
             <p className='itemHeader_Main text-5xl '>{officeItem.name}</p>
             <p className='font-light mt-4 text-4xl'>{officeItem.category}</p>
             <p className='font-light mt-4 text-3xl'>${officeItem.price}</p>
