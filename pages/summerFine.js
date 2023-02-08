@@ -44,7 +44,7 @@ export const getServerSideProps = async () => {
 
         return {
             props: {
-                allProd: allSum,
+                allProd: JSON.parse(JSON.stringify(allSum)),
             },
         };
     } catch (error) {

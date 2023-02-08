@@ -43,7 +43,7 @@ export const getServerSideProps = async () => {
 
         return {
             props: {
-                kidProduction: allKids,
+                kidProduction: JSON.parse(JSON.stringify(allKids)),
             },
         };
     } catch (error) {

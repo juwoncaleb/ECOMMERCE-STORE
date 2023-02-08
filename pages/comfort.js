@@ -7,7 +7,7 @@ import dbConnect from "../utils/Mongo";
 import Comfort from "../model/Comfort";
 import { useRouter } from 'next/router'
 
-export default function ComfortProd ({ comfort }) {
+export default function ComfortProd({ comfort }) {
     const isServerReq = req => !req.url.startsWith('/_next');
     const router = useRouter()
 
@@ -40,15 +40,36 @@ export default function ComfortProd ({ comfort }) {
 export const getServerSideProps = async () => {
     try {
         await dbConnect();
-        const allComfort = await Comfort.find();
+        let allComfort = await Comfort.find();
+        // allComfort = allComfort.map((c) => ({
+
+        //     _id: c._id.valueOf(),
+        //     category: c.category,
+        //     subCategory: c.subCategory,
+        //     description: c.description,
+        //     name: c.name,
+        //     price: c.price,
+        //     images: c.images,
+        //     stocks: c.stocks,
+        //     totalPrice: c.totalPrice,
+        //     createdAt: c.createdAt,
+        //     updatedAt: c.updatedAt,
+        //     __v: c.__v,
+        // }
+
+        // )
+        // )
+        console.log(allComfort);
 
         return {
             props: {
-                comfort: allComfort,
+                comfort: JSON.parse(JSON.stringify(allComfort)), // <== here is a solution
+
             },
+
         };
     } catch (error) {
-        console.log("cant fetch");
+        console.error(error);
         return {
             props: {
                 comfort: [],

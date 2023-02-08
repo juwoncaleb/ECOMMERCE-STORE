@@ -36,6 +36,7 @@ export default function Offic({ offices }) {
         </div>
     )
 }
+
 export const getServerSideProps = async () => {
     try {
         await dbConnect();
@@ -43,7 +44,7 @@ export const getServerSideProps = async () => {
 
         return {
             props: {
-                offices: allOffice,
+                offices: JSON.parse(JSON.stringify(allOffice)), 
             },
         };
     } catch (error) {

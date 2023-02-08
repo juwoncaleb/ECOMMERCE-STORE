@@ -43,7 +43,7 @@ export const getServerSideProps = async () => {
 
         return {
             props: {
-                shoeprod: allShoes,
+                shoeprod: JSON.parse(JSON.stringify(allShoes)),
             },
         };
     } catch (error) {

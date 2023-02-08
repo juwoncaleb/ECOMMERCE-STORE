@@ -44,7 +44,7 @@ export const getServerSideProps = async () => {
 
         return {
             props: {
-                Urbans: allUrban,
+                Urbans:  JSON.parse(JSON.stringify(allUrban)),
             },
         };
     } catch (error) {

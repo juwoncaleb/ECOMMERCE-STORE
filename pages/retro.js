@@ -44,7 +44,7 @@ export const getServerSideProps = async () => {
 
         return {
             props: {
-                allRetro: allRetro,
+                allRetro: JSON.parse(JSON.stringify(allRetro)),
             },
         };
     } catch (error) {

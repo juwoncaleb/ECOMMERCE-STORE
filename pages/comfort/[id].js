@@ -8,10 +8,17 @@ import { useState } from 'react'
 
 import dbConnect from "../../utils/Mongo";
 import Comfort from "../../model/Comfort";
+
+
+
 export default function Item({ comfortItem }) {
     const dispatch = useDispatch()
     const router = useRouter()
-
+    let routerId = router.query
+    let { id } = routerId
+     let url = id
+    console.log(url);
+    
 
     let price = comfortItem.price
     // let quantity = productItem.quantity
@@ -103,20 +110,20 @@ export default function Item({ comfortItem }) {
     )
 }
 
-
 export const getServerSideProps = async () => {
-
+    
     try {
         await dbConnect();
         const comfy = await Comfort.findById(id)
 
         return {
             props: {
-                comfortItem: comfy,
+                comfort: JSON.parse(JSON.stringify(comfy)), // <== here is a solution
+
             },
         };
     } catch (error) {
-        console.log("cant fetch");
+        console.error(error);
         return {
             props: {
                 comfort: [],

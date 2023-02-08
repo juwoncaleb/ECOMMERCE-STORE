@@ -44,7 +44,7 @@ export const getServerSideProps = async () => {
 
         return {
             props: {
-                casualItems: allCasual,
+                casualItems: JSON.parse(JSON.stringify(allCasual)),
             },
         };
     } catch (error) {
