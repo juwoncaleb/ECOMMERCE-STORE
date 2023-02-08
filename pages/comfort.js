@@ -6,7 +6,6 @@ import axios from 'axios'
 import dbConnect from "../utils/Mongo";
 import Comfort from "../model/Comfort";
 import { useRouter } from 'next/router'
-
 export default function ComfortProd({ comfort }) {
     const isServerReq = req => !req.url.startsWith('/_next');
     const router = useRouter()

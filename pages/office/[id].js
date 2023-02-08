@@ -6,10 +6,14 @@ import { addProduct } from '../../redux/cartSlice'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
-
+import dbConnect from "../../utils/Mongo";
+import Office from "../../model/Office";
 export default function Item({ officeItem }) {
     const dispatch = useDispatch()
     const router = useRouter()
+    let routerId = router.query
+    let { id } = routerId
+    console.log(id);
 
 
     let price = officeItem.price
@@ -101,13 +105,25 @@ export default function Item({ officeItem }) {
         </div>
     )
 }
-export async function getServerSideProps({ params }) {
-    const office = await fetch(`http://localhost:3000/api/office/${params.id}`)
-    const data = await office.json()
-    console.log(data);
-    return {
-        props: {
-            officeItem: data
-        }
+
+export const getServerSideProps = async ({ query }) => {
+    const { id } = query
+    console.log(id);
+    try {
+        await dbConnect();
+        const offy = await Office.findById(id)
+        return {
+            props: {
+                officeItem: JSON.parse(JSON.stringify(offy)), // <== here is a solution
+
+            },
+        };
+    } catch (error) {
+        console.error(error);
+        return {
+            props: {
+                comfort: [],
+            },
+        };
     }
-}
+};

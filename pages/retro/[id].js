@@ -6,6 +6,8 @@ import { addProduct } from '../../redux/cartSlice'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
+import dbConnect from "../../utils/Mongo";
+import Retro from "../../model/Retro";
 
 export default function Item({ retro }) {
     const dispatch = useDispatch()
@@ -101,13 +103,27 @@ export default function Item({ retro }) {
         </div>
     )
 }
-export async function getServerSideProps({ params }) {
-    const retro = await fetch(`http://localhost:3000/api/retro/${params.id}`)
-    const data = await retro.json()
-    console.log(data);
-    return {
-        props: {
-            retro: data
+export const getServerSideProps = async ({ query  }) => {
+    const {id} = query
+    console.log(id);
+        try {
+            await dbConnect();
+            const retoBoom = await Retro.findById(id)
+            return {
+                props: {
+                    comfort: JSON.parse(JSON.stringify(retoBoom)), // <== here is a solution
+    
+                },
+            };
+        } catch (error) {
+            console.error(error);
+            return {
+                props: {
+                    comfort: [],
+                },
+            };
         }
-    }
-}
+    };
+    
+    
+    

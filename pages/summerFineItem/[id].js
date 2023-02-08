@@ -6,6 +6,9 @@ import { addProduct } from '../../redux/cartSlice'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import axios from 'axios'
+import dbConnect from "../../utils/Mongo";
+import Product from "../../model/Product";
+
 
 
 export default function Item({ productItem }) {
@@ -102,13 +105,29 @@ export default function Item({ productItem }) {
         </div>
     )
 }
-export async function getServerSideProps({ params }) {
-    const product = await fetch(`http://localhost:3000/api/products/${params.id}`)
-    const data = await product.json()
-    console.log(data);
-    return {
-        props: {
-            productItem: data
+
+
+export const getServerSideProps = async ({ query  }) => {
+    const {id} = query
+    console.log(id);
+        try {
+            await dbConnect();
+            const summa = await Product.findById(id)
+            return {
+                props: {
+                    comfort: JSON.parse(JSON.stringify(summa)), // <== here is a solution
+    
+                },
+            };
+        } catch (error) {
+            console.error(error);
+            return {
+                props: {
+                    comfort: [],
+                },
+            };
         }
-    }
-}
+    };
+    
+    
+    

@@ -101,13 +101,29 @@ export default function Item({ productItem }) {
         </div>
     )
 }
-export async function getServerSideProps({ params }) {
-    const product = await fetch(`https://lacostestore.vercel.app//api/shoe/${params.id}`)
-    const data = await product.json()
-    console.log(data);
-    return {
-        props: {
-            productItem: data
+
+
+export const getServerSideProps = async ({ query  }) => {
+    const {id} = query
+    console.log(id);
+        try {
+            await dbConnect();
+            const shoee = await Comfort.findById(id)
+            return {
+                props: {
+                    productItem: JSON.parse(JSON.stringify(shoee)), // <== here is a solution
+    
+                },
+            };
+        } catch (error) {
+            console.error(error);
+            return {
+                props: {
+                    comfort: [],
+                },
+            };
         }
-    }
-}
+    };
+    
+    
+    

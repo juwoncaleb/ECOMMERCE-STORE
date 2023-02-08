@@ -11,23 +11,21 @@ import Comfort from "../../model/Comfort";
 
 
 
-export default function Item({ comfortItem }) {
+export default function Item({ comfort }) {
     const dispatch = useDispatch()
     const router = useRouter()
     let routerId = router.query
     let { id } = routerId
-     let url = id
-    console.log(url);
-    
+    console.log(id);
 
-    let price = comfortItem.price
+    let price = comfort.price
     // let quantity = productItem.quantity
     let [amount, setAmount] = useState(1)
     const [itemSize, setItemSize] = useState("");
     console.log(itemSize);
 
     const addToCart = () => {
-        dispatch(addProduct({ ...comfortItem, itemSize, amount, price }))
+        dispatch(addProduct({ ...comfort, itemSize, amount, price }))
     }
 
     const cart = useSelector((state) => state.cart)
@@ -36,10 +34,10 @@ export default function Item({ comfortItem }) {
         <div>
             <Header />
             <p className=" itemHeader ml-auto text-left">  <span className='cursor-pointer' onClick={() => router.push('/men')}>Men</span>   <span className='GreyText ml-2 cursor-pointer' onClick={() => router.push('/comfort')}>   / Comfort</span></p>
-            <p className='itemHeader_Main text-5xl '>{comfortItem.name}</p>
-            <p className='font-light mt-4 text-4xl'>{comfortItem.category}</p>
-            <p className='font-light mt-4 text-3xl'>${comfortItem.price}</p>
-            <img className='ml-auto mr-auto mt-10 prodImg' src={comfortItem.images} />
+            <p className='itemHeader_Main text-5xl '>{comfort.name}</p>
+            <p className='font-light mt-4 text-4xl'>{comfort.category}</p>
+            <p className='font-light mt-4 text-3xl'>${comfort.price}</p>
+            <img className='ml-auto mr-auto mt-10 prodImg' src={comfort.images} />
             <div className='ml-auto mr-auto mt-4 description'>
                 <hr className='description_line mt-6' />
                 <p>Sizes</p>
@@ -107,15 +105,16 @@ export default function Item({ comfortItem }) {
             </div>
             <Footer />
         </div>
+
     )
 }
 
-export const getServerSideProps = async () => {
-    
+export const getServerSideProps = async ({ query  }) => {
+const {id} = query
+console.log(id);
     try {
         await dbConnect();
         const comfy = await Comfort.findById(id)
-
         return {
             props: {
                 comfort: JSON.parse(JSON.stringify(comfy)), // <== here is a solution

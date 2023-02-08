@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addProduct } from '../../redux/cartSlice'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-
+import dbConnect from "../../utils/Mongo";
+import Women from "../../model/Women";
 
 export default function Item({ women }) {
     const dispatch = useDispatch()
@@ -101,13 +102,29 @@ export default function Item({ women }) {
         </div>
     )
 }
-export async function getServerSideProps({ params }) {
-    const womenStuff = await fetch(`https://lacostestore.vercel.app//api/women/${params.id}`)
-    const data = await womenStuff.json()
-    console.log(data);
-    return {
-        props: {
-            women: data
+
+
+export const getServerSideProps = async ({ query  }) => {
+    const {id} = query
+    console.log(id);
+        try {
+            await dbConnect();
+            const woo = await Women.findById(id)
+            return {
+                props: {
+                    women: JSON.parse(JSON.stringify(woo)), // <== here is a solution
+    
+                },
+            };
+        } catch (error) {
+            console.error(error);
+            return {
+                props: {
+                    comfort: [],
+                },
+            };
         }
-    }
-}
+    };
+    
+    
+    

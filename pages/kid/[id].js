@@ -6,11 +6,13 @@ import { addProduct } from '../../redux/cartSlice'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
-
+import dbConnect from "../../utils/Mongo";
+import Kid from "../../model/Kid";
 export default function Item({ kid }) {
     const dispatch = useDispatch()
     const router = useRouter()
-
+    let routerId = router.query
+    let { id } = routerId
 
     let price = kid.price
     // let quantity = kid.quantity
@@ -101,13 +103,28 @@ export default function Item({ kid }) {
         </div>
     )
 }
-export async function getServerSideProps({ params }) {
-    const kid = await fetch(`https://lacostestore.vercel.app//kid/${params.id}`)
-    const data = await kid.json()
-    console.log(data);
-    return {
-        props: {
-            kid: data
+
+export const getServerSideProps = async ({ query  }) => {
+    const {id} = query
+    console.log(id);
+        try {
+            await dbConnect();
+            const kiddies = await Kid.findById(id)
+            return {
+                props: {
+                    kid: JSON.parse(JSON.stringify(kiddies)), // <== here is a solution
+    
+                },
+            };
+        } catch (error) {
+            console.error(error);
+            return {
+                props: {
+                    comfort: [],
+                },
+            };
         }
-    }
-}
+    };
+    
+    
+    
