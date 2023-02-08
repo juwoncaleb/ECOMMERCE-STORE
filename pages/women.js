@@ -43,7 +43,7 @@ export const getServerSideProps = async () => {
 
         return {
             props: {
-                woomen: allWomen,
+                woomen: JSON.parse(JSON.stringify(allWomen)),
             },
         };
     } catch (error) {
