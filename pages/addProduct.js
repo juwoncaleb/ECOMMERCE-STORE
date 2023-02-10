@@ -37,7 +37,7 @@ export default function AddProduct() {
     //SEND TO MONGO DATA BASE
     const submitComment = async () => {
         // this is to find where we want to post int
-        await fetch('/api/shoe', {
+        await fetch('/api/casual', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

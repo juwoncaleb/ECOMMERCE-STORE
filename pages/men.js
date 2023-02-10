@@ -39,7 +39,7 @@ export default function Men() {
         </div>
         <div className="row-end-3 row-span-2 ...">
           <div className=" "  >
-            <img onClick={() => router.push('/urban')} className="cursor-pointer mt-20 imgOption " src="bro.jfif" />
+            <img onClick={() => router.push('/casual')} className="cursor-pointer mt-20 imgOption " src="bro.jfif" />
             <p className=" text-1xl md:text-2xl flex  "> Casual</p>
             <hr className="textline_2" />
 
